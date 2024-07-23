@@ -27,9 +27,14 @@ export function resetInstrumentationHandlers(): void {
 }
 
 /** Maybe run an instrumentation function, unless it was already called. */
-export function maybeInstrument(type: InstrumentHandlerType, instrumentFn: () => void): void {
+export function maybeInstrument(
+  type: InstrumentHandlerType,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  instrumentFn: (...args: any[]) => void,
+  ...args: unknown[]
+): void {
   if (!instrumented[type]) {
-    instrumentFn();
+    instrumentFn(...args);
     instrumented[type] = true;
   }
 }
