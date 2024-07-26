@@ -299,7 +299,6 @@ function sendStandaloneClsSpan(metric: Metric, entry: LayoutShift) {
     transaction: routeName,
     attributes,
     startTime,
-    duration,
   });
 
   span?.addEvent('cls', {
